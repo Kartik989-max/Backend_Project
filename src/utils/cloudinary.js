@@ -14,8 +14,9 @@ const uploadOnCLoudinary = async (localFilePath) => {
         if(!localFilePath) {
             throw new Error("No file path provided");
         }
-        const respone = await cloudinary.uploader.upload(localFilePath,{resource_type:'auto'})
-        console.log('File uploaded successfully',respone.url);
+        const respone = await cloudinary.uploader.upload(localFilePath,{resource_type:'auto'});
+        // console.log('File uploaded successfully',respone.url);
+        fs.unlinkSync(localFilePath);
         return respone;
     }
     catch(err){
@@ -24,5 +25,6 @@ const uploadOnCLoudinary = async (localFilePath) => {
         return null;
     }   
 };
+
 
 export { uploadOnCLoudinary };
